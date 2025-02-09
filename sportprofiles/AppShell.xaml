@@ -3,13 +3,106 @@
     x:Class="sportprofiles.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:sportprofiles"
+    xmlns:home="clr-namespace:sportprofiles.Views.Home"
+    xmlns:account="clr-namespace:sportprofiles.Views.Account"
+    xmlns:contact="clr-namespace:sportprofiles.Views.Contact"
+    xmlns:member="clr-namespace:sportprofiles.Views.Member"
+    xmlns:message="clr-namespace:sportprofiles.Views.Message"
+    xmlns:setting="clr-namespace:sportprofiles.Views.Setting"
+    xmlns:controls="clr-namespace:sportprofiles.Controls"
     Shell.FlyoutBehavior="Flyout"
     Title="sportprofiles">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+
+    <Shell.BackgroundColor>White</Shell.BackgroundColor>
+    <Shell.TitleColor>Red</Shell.TitleColor>
+    <Shell.ForegroundColor>Black</Shell.ForegroundColor>
+
+    <Shell.TabBarForegroundColor>Red</Shell.TabBarForegroundColor>
+    <Shell.TabBarTitleColor>Black</Shell.TabBarTitleColor>
+
+     <Shell.FlyoutBackdrop>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Color="DarkGray"
+                          Offset="0.1" />
+            <GradientStop Color="Gray"
+                          Offset="0.6" />
+            <GradientStop Color="LightGray"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackdrop>   
+
+    <Shell.FlyoutHeader>
+        <controls:FlyoutHeader />
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <controls:FlyoutFooter></controls:FlyoutFooter>
+    </Shell.FlyoutFooter>
+
+    <FlyoutItem FlyoutDisplayOptions ="AsMultipleItems">
+
+        <ShellContent
+        Title="News"
+        ContentTemplate="{DataTemplate home:NewsPage}"
+        Route="NewsPage"
+        Icon="news.png"/>
+
+         <ShellContent
+        Title="Posts"
+        ContentTemplate="{DataTemplate home:PostsPage}"
+        Route="PostsPage" 
+        Icon="posts.png"/>
+
+        <ShellContent
+        Title="Contacts"
+        ContentTemplate="{DataTemplate contact:ContactsPage}"
+        Route="ContactsPage" 
+        Icon="profile.png"/>
+
+        <ShellContent
+        Title="Search"
+        ContentTemplate="{DataTemplate home:SearchPage}"
+        Route="SearchPage" 
+        Icon="search.png"/>
+
+        <ShellContent
+        Title="Messages"
+        ContentTemplate="{DataTemplate message:MessagesPage}"
+        Route="MessagesPage" 
+        Icon="messenger.png"/>
+
+        <ShellContent
+        Title="View My Profile"
+        ContentTemplate="{DataTemplate member:ProfilePage}"
+        Route="ProfilePage" 
+        Icon="profile.png"/>
+
+        <ShellContent
+        Title="Edit My Profile"
+        ContentTemplate="{DataTemplate member:ProfileEditPage}"
+        Route="ProfileEditPage" 
+        Icon="editprofile.png"/>
+
+        <ShellContent
+        Title="Account Settings"
+        ContentTemplate="{DataTemplate setting:AccountSettingsPage}"
+        Route="AccountSettingsPage" 
+        Icon="actsettings.png"/>
+
+        <ShellContent
+        Title="Privacy Settings"
+        ContentTemplate="{DataTemplate setting:PrivacySettingsPage}"
+        Route="PrivacySettingsPage" 
+        Icon="privacy.png"/>
+
+        <ShellContent
+        Title="Logout"
+        ContentTemplate="{DataTemplate account:LogoutPage}"
+        Route="LogoutPage" 
+        Icon="logoff.png"/>
+
+    </FlyoutItem>
 
 </Shell>

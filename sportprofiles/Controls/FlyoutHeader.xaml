@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="sportprofiles.Controls.FlyoutHeader"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HeightRequest="100">
+
+    <Grid
+        Padding="0,20,0,0"
+        HorizontalOptions="CenterAndExpand"
+        WidthRequest="300">
+
+        <StackLayout>
+            <Image x:Name="imgProfile"/>
+            <Label x:Name="lblName" HorizontalOptions="Center"/>
+            <Label x:Name="lblTitle" HorizontalOptions="Center"/>
+        </StackLayout>
+
+    </Grid>
+</ContentView>

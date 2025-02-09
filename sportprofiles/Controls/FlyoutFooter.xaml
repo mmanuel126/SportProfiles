@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="sportprofiles.Controls.FlyoutFooter"
+             HeightRequest="140">
+
+ <Grid BackgroundColor="#f7f9fa"  Padding="0,0,0,0">
+            
+        <StackLayout Margin="0,28,0,0">
+          <Image x:Name="imgLogo" Source="logo.jpg" HeightRequest="40" WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Center"/>
+          <Label  Text="A sport social networking site for athletes, agents, and fanatics to connect." 
+               TextColor="Gray" 
+               FontAttributes="Bold" FontSize="14"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+        </StackLayout>
+</Grid>
+
+</ContentView>
