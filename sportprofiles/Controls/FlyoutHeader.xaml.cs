@@ -6,9 +6,9 @@ namespace sportprofiles.Controls
         {
             InitializeComponent();
             
-            imgProfile.Source =  "profile.png";
-            lblName.Text = "Marc Manuel";
-            lblTitle.Text =  "Amateur Basketball Player";
+            imgProfile.Source =  "https://www.sportprofiles.space/images/members/"  + Preferences.Get("UserImage","").ToString();
+            lblName.Text = Preferences.Get("UserName","").ToString();
+            lblTitle.Text = Preferences.Get("UserTitle","").ToString();
         }
     }
 }

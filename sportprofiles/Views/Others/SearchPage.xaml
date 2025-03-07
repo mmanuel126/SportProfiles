@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:data="clr-namespace:sportprofiles.ViewModels"
+             x:Class="sportprofiles.Views.SearchPage"
+             Title="Search">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="OthersResourceDictionary.xaml"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <SearchBar  x:Name="searchBar" BackgroundColor="White"
+                Placeholder="Search by member name, sport, or profile type..."
+                TextChanged="OnTextChanged"/>
+
+        <Grid BackgroundColor="WhiteSmoke" >
+
+            <CollectionView x:Name="searchList" 
+                                        SelectionMode="Single" Grid.ColumnSpan="2" >
+
+                <CollectionView.EmptyView>
+                    <Label Text=" "></Label>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView BackgroundColor="WhiteSmoke" IsEnabled="{Binding labelText}">
+
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem x:Name="ConnectSwipe" Text="Connect" Clicked="OnConnectClicked" 
+                                                                       CommandParameter="{Binding .}"
+                                                             BackgroundColor="Green">
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <StackLayout Spacing="8" Padding="10,10,10,0">
+                                <Frame>
+                                    <StackLayout>
+                                        <StackLayout Padding="0,0,0,10" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+                                            <Frame Style="{StaticResource profileImageFrameStyle}">
+                                                <Image Style="{StaticResource profileImageStyle}" Source="{Binding PicturePath}" VerticalOptions="CenterAndExpand" HeightRequest="88" HorizontalOptions="StartAndExpand" Aspect="AspectFill" />
+                                            </Frame>
+                                            <StackLayout Style="{StaticResource detailsStackLayout}">
+                                                <Label Text="{Binding EntityName}" Style="{StaticResource NameLabel}" />
+                                                <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                    <Label Text="{Binding TitleDesc}" Style="{StaticResource TitleLabelStyle}" />
+                                                </StackLayout>
+                                                <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                    <Label Text="Tap here to view profile..." Style="{StaticResource LabelStyle}" TextColor="Blue" FontAttributes="Bold">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer  Tapped="OnTapGestureRecognizerTapped" CommandParameter="Binding ."   Buttons="Primary"></TapGestureRecognizer>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </StackLayout>
+                                                <StackLayout Style="{StaticResource imageLableStackLayout}" IsVisible="{Binding labelText}">
+                                                    <Label Text="Swipe right to request connection..." Style="{StaticResource LabelStyle}" />
+                                                </StackLayout>
+                                                <StackLayout Style="{StaticResource imageLableStackLayout}" IsVisible="{Binding ParamsAV}">
+                                                    <Label Text="You are already connected" Style="{StaticResource LabelStyle}" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </SwipeView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </StackLayout>
+</ContentPage>

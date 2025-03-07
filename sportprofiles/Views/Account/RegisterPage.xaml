@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="sportprofiles.Views.Account.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="">
+
+    <AbsoluteLayout>
+
+        <StackLayout
+            Padding="0,13,0,0"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="CenterAndExpand"
+            Orientation="Vertical">
+
+            <ScrollView VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Always">
+
+                <StackLayout>
+                    <Image
+                        x:Name="imgLogo"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Source="logo.jpg"
+                        VerticalOptions="Center"
+                        WidthRequest="160" />
+
+                    <Label
+                        x:Name="lblInstruction"
+                        Padding="20,10,20,5"
+                        FontAttributes="Bold"
+                        FontSize="17"
+                        HorizontalTextAlignment="Center"
+                        Text="Create Account below!"
+                        TextColor="{StaticResource Gray900}" />
+
+                    <StackLayout
+                        Grid.Row="2"
+                        HorizontalOptions="Center"
+                        Spacing="15"
+                        VerticalOptions="Fill">
+
+                        <StackLayout HorizontalOptions="Center" Spacing="1">
+                            <Entry
+                                x:Name="FirstName"
+                                Keyboard="Email"
+                                Placeholder="Enter first name..."
+                                PlaceholderColor="{StaticResource Gray500}"
+                                Text=""
+                                WidthRequest="300" />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="1">
+                            <Entry
+                                x:Name="LastName"
+                                Placeholder="Enter last name..."
+                                PlaceholderColor="{StaticResource Gray500}"
+                                Text=""
+                                WidthRequest="300" />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="1">
+                            <Entry
+                                x:Name="Email"
+                                Keyboard="Email"
+                                Placeholder="Enter email..."
+                                PlaceholderColor="{StaticResource Gray500}"
+                                Text=""
+                                WidthRequest="300" />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="1">
+                            <Entry
+                                x:Name="Pwd"
+                                IsPassword="True"
+                                IsTextPredictionEnabled="False"
+                                Keyboard="Text"
+                                Placeholder="Enter password..."
+                                PlaceholderColor="{StaticResource Gray500}"
+                                Text=""
+                                WidthRequest="300" />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="1">
+                            <Entry
+                                x:Name="PwdReEntered"
+                                IsPassword="True"
+                                Placeholder="Enter password again..."
+                                PlaceholderColor="{StaticResource Gray500}"
+                                Text=""
+                                WidthRequest="300" />
+                        </StackLayout>
+
+                        <Picker
+                            x:Name="Gender"
+                            Title="Tap here to select gender..."
+                            HorizontalOptions="FillAndExpand"
+                            TitleColor="{StaticResource Gray500}" />
+
+                        <Picker
+                            x:Name="ProfileType"
+                            Title="Tap here to select profile type..."
+                            HorizontalOptions="FillAndExpand"
+                            TitleColor="{StaticResource Gray500}" />
+
+                        <StackLayout HorizontalOptions="StartAndExpand" Spacing="1">
+                            <Label Text="Tap date below to select birth date:" TextColor="{StaticResource Gray500}" />
+                            <DatePicker
+                                x:Name="BirthDate"
+                                MaximumDate="12/31/2900"
+                                MinimumDate="01/01/1800" />
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Button
+                                x:Name="signUp"
+                                BackgroundColor="{StaticResource Blue100Accent}"
+                                BorderColor="Black"
+                                Clicked="SignUpButton_Clicked"
+                                CornerRadius="20"
+                                FlexLayout.AlignSelf="Stretch"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Create Account"
+                                TextColor="White"
+                                WidthRequest="300" />
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label
+                                x:Name="regForgetLabel"
+                                BackgroundColor="Transparent"
+                                FlexLayout.AlignSelf="End"
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Recover Password"
+                                TextColor="Blue">
+
+                                <Label.GestureRecognizers>
+
+                                    <TapGestureRecognizer Tapped="RecoverPassword_tap_Tapped"
+                                            NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+
+                            </Label>    
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <Label
+                        x:Name="existingActLabel"
+                        Padding="30,10,30,10"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Already have Account?"
+                        TextColor="Blue">
+
+                        <Label.GestureRecognizers>
+
+                            <TapGestureRecognizer Tapped="Login_tap_Tapped"
+                                    NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+
+                        </Label>
+                    <Label Text="" />
+
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+
+    </AbsoluteLayout>
+
+</ContentPage>

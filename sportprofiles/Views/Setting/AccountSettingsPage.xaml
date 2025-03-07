@@ -5,6 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Account Settings">
 
+    <!-- resources for content page -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="SettingsResourceDictionary.xaml"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
     <VerticalStackLayout Padding="30,0" Spacing="25">
         <Label Text="Account Settings Skeleton Page" />
     </VerticalStackLayout>
