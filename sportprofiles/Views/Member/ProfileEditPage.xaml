@@ -902,11 +902,13 @@
                                                             <SwipeItems Mode="Reveal">
                                                                 <SwipeItem
                                                                     BackgroundColor="Green"
-                                                                    IconImageSource="editprofile7.png"
+                                                                    Command="{Binding Source={x:Reference collectionViewEd}, Path=BindingContext.EditCommand}"
+                                                                    CommandParameter="{Binding .}"
                                                                     Text="Edit" />
                                                                 <SwipeItem
                                                                     BackgroundColor="Red"
-                                                                    IconImageSource="reject2.png"
+                                                                    Command="{Binding Source={x:Reference collectionViewEd}, Path=BindingContext.DeleteCommand}"
+                                                                    CommandParameter="{Binding .}"
                                                                     Text="Delete" />
                                                             </SwipeItems>
                                                         </SwipeView.LeftItems>

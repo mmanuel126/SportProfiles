@@ -1,19 +1,15 @@
-﻿
-using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using sportprofiles.Models.Contacts;
-using sportprofiles.Services;
 using System.Windows.Input;
 
 namespace sportprofiles.ViewModels
 {
     public class SearchListViewModel : INotifyPropertyChanged
     {
-        List<ContactsModel> _searchResult;
-        public List<ContactsModel> SearchResults
+        Task<ObservableCollection<ContactsModel>> _searchResult;
+        public Task<ObservableCollection<ContactsModel>> SearchResults
         {
             get
             {
@@ -28,9 +24,10 @@ namespace sportprofiles.ViewModels
 
         private readonly sportprofiles.Services.IContacts _conSvc;
 
-        public ICommand PerformSearch => new Command<string>((string query) =>
+        public ICommand PerformSearch => new Command<string>((string searchText) =>
         {
-            SearchResults =  GetSearchResults(query);
+
+            SearchResults =  GetSearchResults(searchText);
         });
 
         public SearchListViewModel(sportprofiles.Services.IContacts conSvc)
@@ -38,16 +35,21 @@ namespace sportprofiles.ViewModels
             _conSvc = conSvc;
         }
 
-        List<ContactsModel> GetSearchResults(string query)
+        async Task<ObservableCollection<ContactsModel>> GetSearchResults(string searchText)
         {
-            var result = (List<ContactsModel>) _conSvc.GetSearchResult();
+            var result = await  _conSvc.GetSearchResult(searchText);
             return result;
         }
 
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+        public async void LogException(string msg, string stackTrace, string jwt)
+        {
+            await _conSvc.LogException(msg, stackTrace, jwt);
+        }        
 
-        void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        void OnPropertyChanged([CallerMemberName] string propertyName = null!)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

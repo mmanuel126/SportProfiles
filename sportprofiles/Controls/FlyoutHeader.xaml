@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     HeightRequest="140">
 
-   <ContentView.Resources>
+    <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="NameLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="18" />
@@ -65,13 +65,13 @@
                 <Setter Property="CornerRadius" Value="24" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
-                 <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="IsClippedToBounds" Value="True" />
             </Style>
 
             <Style x:Key="itemsInsideCardViewStackLayoutStyle" TargetType="StackLayout">
                 <Setter Property="Orientation" Value="Horizontal" />
-                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Spacing" Value="8" />
             </Style>
 
@@ -84,9 +84,9 @@
         WidthRequest="300">
 
         <StackLayout>
-            <Image x:Name="imgProfile" Style="{StaticResource profileImageStyle}"/>
-            <Label x:Name="lblName" HorizontalOptions="Center"/>
-            <Label x:Name="lblTitle" HorizontalOptions="Center"/>
+            <Image x:Name="imgProfile" Style="{StaticResource profileImageStyle}" />
+            <Label x:Name="lblName" HorizontalOptions="Center" />
+            <Label x:Name="lblTitle" HorizontalOptions="Center" />
         </StackLayout>
 
     </Grid>

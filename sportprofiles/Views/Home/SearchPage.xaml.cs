@@ -1,9 +1,4 @@
-using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using sportprofiles.Models;
 using sportprofiles.ViewModels;
-using sportprofiles.Services;
-using Microsoft.Maui.Storage;
 
 namespace sportprofiles.Views.Home;
 
@@ -26,8 +21,8 @@ public partial class SearchPage : ContentPage
     {
         try
         {
-          //  var swipeItem = sender as SwipeItem;
-           // var data = swipeItem.BindingContext as SearchModel;
+            //  var swipeItem = sender as SwipeItem;
+            // var data = swipeItem.BindingContext as SearchModel;
 
             bool ans = await DisplayAlert("Connection Request", "Please note the member will have to confirm your request. You should send this request only if you know this person. Are you sure you want to send this connection request?", "Yes", "No");
             if (ans)
@@ -48,17 +43,14 @@ public partial class SearchPage : ContentPage
         }
     }
 
-    void OnTextChanged(object sender, EventArgs e)
+    async void OnTextChanged(object sender, EventArgs e)
     {
         try
         {
             if (!String.IsNullOrEmpty(searchBar.Text))
             {
                 sportprofiles.Services.Contacts conSvc = new sportprofiles.Services.Contacts();
-                string memberID = "0";
-                if (Preferences.Get("UserID", "").ToString() != null)
-                    memberID = Preferences.Get("UserID", "").ToString();
-                var Result = conSvc.GetSearchResult();
+                var Result = await conSvc.GetSearchResult(searchBar.Text);
                 searchList.ItemsSource = Result;
             }
             else
@@ -70,11 +62,12 @@ public partial class SearchPage : ContentPage
         {
             if (ex.GetType() == typeof(HttpRequestException))
             {
-               DisplayAlert("Network Error...", "Error accessing network or services. Check internet connection and then try again.", "Ok");
+                await DisplayAlert("Network Error...", "Error accessing network or services. Check internet connection and then try again.", "Ok");
             }
             else
             {
-                DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                _searchViewModel.LogException(ex.Message, ex.StackTrace!, "");
             }
         }
     }

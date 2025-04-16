@@ -1,8 +1,6 @@
 ﻿using sportprofiles.Services;
-using sportprofiles.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using sportprofiles.Models.Members;
 
 namespace sportprofiles.ViewModels
@@ -44,17 +42,20 @@ namespace sportprofiles.ViewModels
 
         public async Task GetMemberBasicInfo()
         {
-            ProfileBasicInfo = await _membersSvc.GetMemberBasicInfo();
+            string memberID = GetMemberID();
+            ProfileBasicInfo = await _membersSvc.GetMemberBasicInfo(memberID);
         }
 
         public async Task GetMemberContactInfo()
         {
-            ProfileContactInfo = await _membersSvc.GetMemberContactInfo();
+            string memberID = GetMemberID();
+            ProfileContactInfo = await _membersSvc.GetMemberContactInfo(memberID);
         }
 
         public async Task GetMemberEducationInfo()
         {
-            ProfileEducation =  await _membersSvc.GetMemberEducationInfo();
+            string memberID = GetMemberID();
+            ProfileEducation =  await _membersSvc.GetMemberEducationInfo(memberID);
         }
 
         public async Task<string> Register(RegisterModel register)
@@ -83,11 +84,37 @@ namespace sportprofiles.ViewModels
             return await _membersSvc.ChangePassword(register);
         }
 
+         private string GetMemberID()
+        {
+            string memberID = "0";
+            string isLoginUser = Preferences.Get("ProfileLoginUser", "yes");
+            if (isLoginUser == "yes")
+            {
+                if (!String.IsNullOrEmpty(Preferences.Get("UserID", "")))
+                {
+                    memberID = Preferences.Get("UserID", "");
+                }
+            }
+            else if (isLoginUser== "no")
+            {
+                if (!String.IsNullOrEmpty(Preferences.Get("ProfileID", "")))
+                {
+                    memberID = Preferences.Get("ProfileID", "");
+                }
+            }
+            return memberID;
+        }
+
+        public async void LogException(string msg, string stackTrace, string jwt)
+        {
+            await _membersSvc.LogException(msg, stackTrace, jwt);
+        }
+
         #region INotifyPropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        void OnPropertyChanged([CallerMemberName] string propertyName = null!)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

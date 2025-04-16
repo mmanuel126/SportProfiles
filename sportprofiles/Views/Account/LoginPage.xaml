@@ -1,56 +1,88 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="sportprofiles.Views.Account.LoginPage"
-             Title="">
+<ContentPage
+    x:Class="sportprofiles.Views.Account.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="">
 
     <AbsoluteLayout>
 
-        <StackLayout Padding="0, 13,0, 0" HorizontalOptions="CenterAndExpand" Orientation="Vertical"
+        <StackLayout
+            Padding="0,13,0,0"
             AbsoluteLayout.LayoutBounds="0,0,1,1"
-            AbsoluteLayout.LayoutFlags="All">
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="CenterAndExpand"
+            Orientation="Vertical">
 
-            <Image x:Name="imgLogo" Source="logo.jpg" HeightRequest="40" WidthRequest="160" />
+            <Image
+                x:Name="imgLogo"
+                HeightRequest="40"
+                Source="logo.jpg"
+                WidthRequest="160" />
 
-            <Label x:Name="lblInst" Text="Please Login to your account below!"
-                   HorizontalTextAlignment="Center"
-                   FontAttributes="Bold" Padding="30,10,30,10"
-                   TextColor="{StaticResource Gray900}" FontSize="17"/>
+            <Label
+                x:Name="lblInst"
+                Padding="30,10,30,10"
+                FontAttributes="Bold"
+                FontSize="17"
+                HorizontalTextAlignment="Center"
+                Text="Please Login to your account below!"
+                TextColor="{StaticResource Gray900}" />
 
-            <StackLayout Padding="30,10,30,10"
-                         AbsoluteLayout.LayoutBounds="0,0,1,1"
-                         AbsoluteLayout.LayoutFlags="All">
-                <Entry 
-                    Text="" Placeholder="Enter email..." PlaceholderColor="{StaticResource Gray500}"
+            <StackLayout
+                Padding="30,10,30,10"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All">
+                <Entry
                     x:Name="txtEmail"
-                    Keyboard="Email" 
+                    Keyboard="Email"
+                    Placeholder="Enter email..."
+                    PlaceholderColor="{StaticResource Gray500}"
+                    Text=""
                     WidthRequest="300" />
             </StackLayout>
 
             <StackLayout Padding="30,3,30,10">
-                <Entry 
-                    Text="" Placeholder="Enter password..." PlaceholderColor="{StaticResource Gray500}" 
+                <Entry
                     x:Name="txtPwd"
-                    WidthRequest="300" Margin="10,0,10,0"
-                    IsPassword="True" />
+                    Margin="10,0,10,0"
+                    IsPassword="True"
+                    Placeholder="Enter password..."
+                    PlaceholderColor="{StaticResource Gray500}"
+                    Text=""
+                    WidthRequest="300" />
             </StackLayout>
 
-            <StackLayout >
-                <Button x:Name="LoginButton"  FontSize="Medium"  WidthRequest="300"
-                  Clicked="LoginButton_Clicked"
-                  TextColor="White"   CornerRadius="20" BackgroundColor="{StaticResource Blue100Accent}"
-                  FlexLayout.AlignSelf="Stretch"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Text="Log In"/>
+            <StackLayout>
+                <Button
+                    x:Name="LoginButton"
+                    BackgroundColor="{StaticResource Blue100Accent}"
+                    Clicked="LoginButton_Clicked"
+                    CornerRadius="20"
+                    FlexLayout.AlignSelf="Stretch"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="Log In"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="300" />
             </StackLayout>
 
             <StackLayout Padding="30,10,30,10">
 
-                <Label x:Name="ForgetLabel" Text="Forgot Password?" TextColor="Blue" FontSize="17" FontAttributes="Bold"
-                      HorizontalOptions="CenterAndExpand"
-                      BackgroundColor="Transparent" FlexLayout.AlignSelf="End">
+                <Label
+                    x:Name="ForgetLabel"
+                    BackgroundColor="Transparent"
+                    FlexLayout.AlignSelf="End"
+                    FontAttributes="Bold"
+                    FontSize="17"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Forgot Password?"
+                    TextColor="Blue">
                     <Label.GestureRecognizers>
 
-                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped_ForgetLabel"
-                              NumberOfTapsRequired="1" />
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped_ForgetLabel" />
                     </Label.GestureRecognizers>
 
                 </Label>
@@ -58,45 +90,69 @@
             </StackLayout>
 
             <StackLayout Padding="30,10,30,10">
-                <Label x:Name="lblOR" Text="--------- OR ---------" TextColor="{StaticResource Gray900}" FontSize="15" FontAttributes="None"
-                      HorizontalOptions="CenterAndExpand" Padding="0,0,0,10"
-                 />
+                <Label
+                    x:Name="lblOR"
+                    Padding="0,0,0,10"
+                    FontAttributes="None"
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="--------- OR ---------"
+                    TextColor="{StaticResource Gray900}" />
             </StackLayout>
 
-            <StackLayout >
-                <Button x:Name="registerButton"  FontSize="Medium"  WidthRequest="300"
-                Clicked="RegisterButton_Clicked"
-                TextColor="White" BorderColor="Black" BackgroundColor="{StaticResource Blue100Accent}"  CornerRadius="20"
-                FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Text="Create New Account"/>
+            <StackLayout>
+                <Button
+                    x:Name="registerButton"
+                    BackgroundColor="{StaticResource Blue100Accent}"
+                    BorderColor="Black"
+                    Clicked="RegisterButton_Clicked"
+                    CornerRadius="20"
+                    FlexLayout.AlignSelf="Stretch"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Create New Account"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="300" />
             </StackLayout>
 
             <StackLayout Padding="30,10,30,10">
 
-                <Label x:Name="lblAbout" Text="A sport social networking app for athletes, agents, and fans to connect." 
-                      HorizontalTextAlignment="Center" FontAttributes="Bold" 
-                      TextColor="{StaticResource Gray500}" FontSize="14"/>
+                <Label
+                    x:Name="lblAbout"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    Text="A sport social networking app for athletes, agents, and fans to connect."
+                    TextColor="{StaticResource Gray500}" />
 
             </StackLayout>
             <StackLayout Padding="30,10,30,10">
-                <Label x:Name="lblCopyright" Text="© 2024 MarcMan." 
-                      HorizontalTextAlignment="Center" FontAttributes="Bold" 
-                      TextColor="{StaticResource Gray500}" FontSize="14"/>
+                <Label
+                    x:Name="lblCopyright"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    Text="© 2024 MarcMan."
+                    TextColor="{StaticResource Gray500}" />
             </StackLayout>
 
         </StackLayout>
 
         <StackLayout
             x:Name="indicatorLayout"
-            IsVisible="False"
             AbsoluteLayout.LayoutBounds="0,0,1,1"
             AbsoluteLayout.LayoutFlags="All"
-            BackgroundColor="WhiteSmoke" Opacity="1.9">
+            BackgroundColor="WhiteSmoke"
+            IsVisible="False"
+            Opacity="1.9">
             <ActivityIndicator
                 x:Name="activityIndicator"
-                IsRunning="False"
                 HorizontalOptions="CenterAndExpand"
+                IsRunning="False"
                 VerticalOptions="CenterAndExpand"
-                Color="Black"/>
+                Color="Black" />
         </StackLayout>
 
     </AbsoluteLayout>

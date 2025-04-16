@@ -7,7 +7,7 @@ using sportprofiles.ViewModels;
 namespace sportprofiles.Views.Account;
 
 public partial class RegisterPage : ContentPage
- {
+{
     private readonly MemberViewModel _memberViewModel;
     public RegisterPage(MemberViewModel memberViewModel)
     {
@@ -35,7 +35,7 @@ public partial class RegisterPage : ContentPage
         profiePickerList.Add("Scout");
         profiePickerList.Add("Sports Fanatic");
         ProfileType.ItemsSource = profiePickerList;
-    
+
     }
 
     private async void RecoverPassword_tap_Tapped(object sender, EventArgs e)
@@ -125,11 +125,12 @@ public partial class RegisterPage : ContentPage
                     ProfileType = profile,
                     Day = bday,
                     Month = bmonth,
-                    Year = byear, Code = ""
+                    Year = byear,
+                    Code = ""
                 };
 
                 var result = await _memberViewModel.Register(user);
-                
+
                 if (result == "ExistingEmail")
                 {
                     await DisplayAlert("Existing Email Error...", "The email you entered already exists in our system! Check your email to see if you may have already registerd.", "Ok");
@@ -137,15 +138,15 @@ public partial class RegisterPage : ContentPage
                 else if (result == "NewEmail")
                 {
                     // confirm register page
-                    Preferences.Set("RegisteredEmail",Email.Text);  // to store the registered email for the session
+                    Preferences.Set("RegisteredEmail", Email.Text);  // to store the registered email for the session
                     var confirmRegisterPage = new ConfirmRegisterPage(_memberViewModel);  // to redirect to a confirm registered page
                     await Navigation.PushModalAsync(new NavigationPage(confirmRegisterPage));
                 }
-               
+
             }
             catch (FormatException ex)
             {
-               
+
                 if (ex.GetType() == typeof(HttpRequestException))
                 {
                     await DisplayAlert("Network Error...", "Error accessing network or services. Check internet connection and then try again.", "Ok");
@@ -153,6 +154,7 @@ public partial class RegisterPage : ContentPage
                 else
                 {
                     await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                    _memberViewModel.LogException(ex.Message, ex.StackTrace!, "");
                 }
             }
         }

@@ -1,7 +1,3 @@
-using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using sportprofiles.Models;
-using sportprofiles.Services;
 using sportprofiles.ViewModels;
 
 namespace sportprofiles.Views.Member;
@@ -16,9 +12,9 @@ public partial class ProfilePage : ContentPage
         _profileViewModel = profileViewModel;
         BindingContext = profileViewModel;
     
-        imgProfile.Source = "profile.png";
-        lblName.Text = "Marc Manuel";
-        lblTitle.Text = "Profession Basketball";
+        imgProfile.Source = _profileViewModel.ProfileBasicInfo.memProfileImage;
+        lblName.Text = _profileViewModel.ProfileBasicInfo.memProfileName;
+        lblTitle.Text = _profileViewModel.ProfileBasicInfo.memberProfileTitle;
     }
 
 

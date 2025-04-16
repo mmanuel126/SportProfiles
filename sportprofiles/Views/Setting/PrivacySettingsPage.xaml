@@ -3,17 +3,356 @@
     x:Class="sportprofiles.Views.Setting.PrivacySettingsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:tabView="http://schemas.syncfusion.com/maui/toolkit"
     Title="Privacy Settings">
 
-    <!-- resources for content page -->
+    <!--  resources for content page  -->
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary Source="SettingsResourceDictionary.xaml"/>
+            <ResourceDictionary Source="SettingsResourceDictionary.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <!--  content  -->
+    <AbsoluteLayout>
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            Spacing="0">
 
-    <VerticalStackLayout Padding="30,0" Spacing="25">
-        <Label Text="Privacy Settings Skeleton Page" />
-    </VerticalStackLayout>
+            <tabView:SfTabView
+                x:Name="tabPSView"
+                BackgroundColor="White"
+                IndicatorBackground="Red"
+                TabBarBackground="#E4E4E4"
+                TabWidthMode="SizeToContent">
+                <tabView:SfTabView.Items>
+
+                    <!--  privacy profile tab  -->
+                    <tabView:SfTabItem Header="Profile">
+                        <tabView:SfTabItem.Content>
+                            <Grid BackgroundColor="WhiteSmoke">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <ScrollView Grid.Row="1">
+                                    <StackLayout
+                                        Grid.Row="2"
+                                        Padding="0,12,0,0"
+                                        HorizontalOptions="Start"
+                                        Spacing="5"
+                                        VerticalOptions="Fill">
+
+                                        <StackLayout
+                                            Padding="10,0,10,12"
+                                            Orientation="Vertical"
+                                            Spacing="10">
+                                            <Label
+                                                Padding="0,0,0,0"
+                                                FontSize="15"
+                                                Text="You can control who can view your profile and related information by adjusting these settings." />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            Spacing="1">
+                                            <Label Style="{StaticResource LabelStyle}" Text="Basic Information:" />
+                                            <Picker
+                                                x:Name="BasicInfo"
+                                                HorizontalOptions="FillAndExpand"
+                                                ItemDisplayBinding="{Binding Desc}"
+                                                ItemsSource="{Binding ProfilePrivacyTypes}"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.BasicInfo}"
+                                                Style="{StaticResource TextStyle}"
+                                                TitleColor="Black"
+                                                WidthRequest="180" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            Spacing="1">
+                                            <Label Style="{StaticResource LabelStyle}" Text="Personal Information:" />
+                                            <Picker
+                                                x:Name="PersonalInfo"
+                                                HorizontalOptions="FillAndExpand"
+                                                ItemDisplayBinding="{Binding Desc}"
+                                                ItemsSource="{Binding ProfilePrivacyTypes}"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.PersonalInfo}"
+                                                Style="{StaticResource TextStyle}"
+                                                TitleColor="Black"
+                                                WidthRequest="180" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            Spacing="1">
+                                            <Label Style="{StaticResource LabelStyle}" Text="Contacts:" />
+                                            <Picker
+                                                x:Name="ContactsDDL"
+                                                HorizontalOptions="Start"
+                                                ItemDisplayBinding="{Binding Desc}"
+                                                ItemsSource="{Binding ProfilePrivacyTypes}"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.ContactInfo}"
+                                                Style="{StaticResource TextStyle}"
+                                                TitleColor="Black"
+                                                WidthRequest="180" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            Spacing="1">
+                                            <Label Style="{StaticResource LabelStyle}" Text="Education:" />
+                                            <Picker
+                                                x:Name="Education"
+                                                HorizontalOptions="Start"
+                                                ItemDisplayBinding="{Binding Desc}"
+                                                ItemsSource="{Binding ProfilePrivacyTypes}"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.Education}"
+                                                Style="{StaticResource TextStyle}"
+                                                TitleColor="Black"
+                                                WidthRequest="180" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            Spacing="1">
+                                            <Label Style="{StaticResource LabelStyle}" Text="Mobile Phone:" />
+                                            <Picker
+                                                x:Name="MobilePhone"
+                                                HorizontalOptions="Start"
+                                                ItemDisplayBinding="{Binding Desc}"
+                                                ItemsSource="{Binding ProfilePrivacyTypes}"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.MobilePhone}"
+                                                Style="{StaticResource TextStyle}"
+                                                TitleColor="Black"
+                                                WidthRequest="180" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            Spacing="1">
+                                            <Label Style="{StaticResource LabelStyle}" Text="Other Phone:" />
+                                            <Picker
+                                                x:Name="OtherPhone"
+                                                HorizontalOptions="Start"
+                                                ItemDisplayBinding="{Binding Desc}"
+                                                ItemsSource="{Binding ProfilePrivacyTypes}"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.OtherPhone}"
+                                                Style="{StaticResource TextStyle}"
+                                                TitleColor="Black"
+                                                WidthRequest="180" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            Spacing="1">
+                                            <Label Style="{StaticResource LabelStyle}" Text="Email Address:" />
+                                            <Picker
+                                                x:Name="EmailAddress"
+                                                HorizontalOptions="Start"
+                                                ItemDisplayBinding="{Binding Desc}"
+                                                ItemsSource="{Binding ProfilePrivacyTypes}"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.EmailAddress}"
+                                                Style="{StaticResource TextStyle}"
+                                                TitleColor="Black"
+                                                WidthRequest="180" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,15,30,24"
+                                            HorizontalOptions="Start"
+                                            Spacing="10">
+                                            <Button
+                                                Grid.Row="3"
+                                                Margin="0,0,0,0"
+                                                BackgroundColor="{StaticResource Blue100Accent}"
+                                                Clicked="SaveProfileSettingsButton_Clicked"
+                                                CornerRadius="20"
+                                                FontAttributes="Bold"
+                                                Text="Save"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ScrollView>
+                            </Grid>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <!--  privacy search tab  -->
+                    <tabView:SfTabItem Header="Search">
+                        <tabView:SfTabItem.Content>
+                            <Grid BackgroundColor="WhiteSmoke">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
+                                <ScrollView Grid.Row="1">
+                                    <StackLayout
+                                        Grid.Row="2"
+                                        Padding="10"
+                                        HorizontalOptions="Start"
+                                        Spacing="5"
+                                        VerticalOptions="Fill">
+
+                                        <StackLayout>
+                                            <Label FontSize="15" Text="You can control who can find you while they are searching by adjusting the settings below." />
+                                        </StackLayout>
+
+                                        <StackLayout Padding="0,15,10,10" Spacing="1">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Style="{StaticResource LabelStyle}"
+                                                Text="You are visible to:"
+                                                TextColor="Brown" />
+                                            <Picker
+                                                x:Name="Visibility"
+                                                HorizontalOptions="Start"
+                                                SelectedIndex="{Binding PrivacySettingsInfo.Visibility}"
+                                                Style="{StaticResource TextStyle}"
+                                                WidthRequest="200">
+                                                <Picker.Items>
+                                                    <x:String>Select...</x:String>
+                                                    <x:String>Everyone</x:String>
+                                                    <x:String>Only Contacts</x:String>
+                                                </Picker.Items>
+                                            </Picker>
+                                        </StackLayout>
+
+                                        <StackLayout Padding="0,12,10,8">
+                                            <Label
+                                                Margin="0,0,0,0"
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Style="{StaticResource LabelStyle}"
+                                                Text="People who can see you while searching can see:"
+                                                TextColor="Brown" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="0,0,0,0"
+                                            HorizontalOptions="StartAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="90">
+                                            <Label
+                                                FontSize="14"
+                                                HorizontalOptions="StartAndExpand"
+                                                HorizontalTextAlignment="Start"
+                                                Text="Your profile picture:"
+                                                VerticalOptions="Center" />
+                                            <Switch
+                                                x:Name="ProfilePicture"
+                                                HorizontalOptions="EndAndExpand"
+                                                IsToggled="{Binding PrivacySettingsInfo.ViewProfilePicture}" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="0,2,0,0"
+                                            HorizontalOptions="StartAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="80">
+                                            <Label
+                                                FontSize="14"
+                                                HorizontalOptions="StartAndExpand"
+                                                HorizontalTextAlignment="Start"
+                                                Text="Your contacts list:"
+                                                VerticalOptions="Center" />
+                                            <Switch
+                                                x:Name="ContactsList"
+                                                HorizontalOptions="EndAndExpand"
+                                                IsToggled="{Binding PrivacySettingsInfo.ViewFriendsList}" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="0,2,0,0"
+                                            HorizontalOptions="StartAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="95">
+                                            <Label
+                                                FontSize="14"
+                                                HorizontalOptions="StartAndExpand"
+                                                HorizontalTextAlignment="Start"
+                                                Text="A link request adding you as a contact:"
+                                                VerticalOptions="Center" />
+                                            <Switch
+                                                x:Name="RequestToAdd"
+                                                HorizontalOptions="EndAndExpand"
+                                                IsToggled="{Binding PrivacySettingsInfo.ViewLinksToRequestAddingYouAsFriend}" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="0,2,0,0"
+                                            HorizontalOptions="StartAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="80">
+                                            <Label
+                                                FontSize="14"
+                                                HorizontalOptions="StartAndExpand"
+                                                HorizontalTextAlignment="Start"
+                                                Text="A link to send you a message:"
+                                                VerticalOptions="Center" />
+                                            <Switch
+                                                x:Name="SendYouMsg"
+                                                HorizontalOptions="EndAndExpand"
+                                                IsToggled="{Binding PrivacySettingsInfo.ViewLinkTSendYouMsg}" />
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Padding="10,15,30,24"
+                                            HorizontalOptions="Start"
+                                            Orientation="Vertical"
+                                            Spacing="10">
+                                            <Button
+                                                Margin="0,0,0,0"
+                                                BackgroundColor="{StaticResource Blue100Accent}"
+                                                Clicked="SavePrivacySearchButton_Clicked"
+                                                CornerRadius="20"
+                                                FontAttributes="Bold"
+                                                Text="Save"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ScrollView>
+                            </Grid>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                </tabView:SfTabView.Items>
+            </tabView:SfTabView>
+
+        </StackLayout>
+
+        <StackLayout
+            x:Name="aiLayout"
+            Padding="0,15,0,0"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="White"
+            IsVisible="{Binding IsRefreshing}"
+            Opacity="1.9">
+            <ActivityIndicator
+                x:Name="ai"
+                HorizontalOptions="CenterAndExpand"
+                IsRunning="{Binding IsRefreshing}"
+                VerticalOptions="Center"
+                Color="Black" />
+            <Label
+                HorizontalOptions="Center"
+                Text="Loading Data..."
+                TextColor="Black"
+                VerticalOptions="Center" />
+        </StackLayout>
+
+    </AbsoluteLayout>
+
 </ContentPage>

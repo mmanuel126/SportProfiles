@@ -37,7 +37,6 @@ public partial class ForgotPasswordPage: ContentPage
                 Preferences.Set("ResetPwdEmail",EmailText.Text);
                 var resetPwdPage = new ResetPasswordPage(_memberViewModel);
                 await Navigation.PushModalAsync(new NavigationPage(resetPwdPage));
-                //Application.Current.MainPage = new AppShell();
             }
             catch (FormatException)
             {

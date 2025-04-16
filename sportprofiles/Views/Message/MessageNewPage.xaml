@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="sportprofiles.Views.Message.MessageNewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyIndicator="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="Compose New Message"
+    ios:Page.UseSafeArea="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="MessagesResourceDict.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="0,30,0,0" BackgroundColor="WhiteSmoke">
+        <StackLayout>
+            <Label
+                Padding="10"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Start"
+                Text="New Message" />
+        </StackLayout>
+        <Label FontAttributes="Bold" Text="   To:" />
+        <StackLayout
+            Padding="10,2,10,10"
+            HorizontalOptions="Start"
+            VerticalOptions="Start">
+            <editors:SfAutocomplete
+                x:Name="autoComplete"
+                DisplayMemberPath="FriendName"
+                HeightRequest="40"
+                ItemsSource="{Binding Contacts}"
+                MaxDropDownHeight="250"
+                SelectionChanged="autoComplete_SelectionChanged"
+                TextColor="#1976d2"
+                TextMemberPath="FriendName" />
+        </StackLayout>
+
+        <StackLayout Padding="0,0,0,10">
+            <Label FontAttributes="Bold" Text="   Subject:" />
+            <StackLayout Padding="10,0,10,0" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+                <StackLayout Padding="0,1,0,10" Style="{StaticResource detailsStackLayout}">
+                    <Entry
+                        x:Name="txtSubject"
+                        BackgroundColor="White"
+                        HeightRequest="40"
+                        Keyboard="Text"
+                        Text="{Binding SubjectText}" />
+                </StackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                VerticalOptions="End" />
+        </StackLayout>
+
+        <StackLayout Padding="0,10,0,0">
+            <Label FontAttributes="Bold" Text="   Message:" />
+            <StackLayout Padding="10,0,10,0" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+                <StackLayout Padding="0,1,0,10" Style="{StaticResource detailsStackLayout}">
+                    <inputLayout:SfTextInputLayout
+                        Grid.Row="2"
+                        Padding="8,0,8,8"
+                        BackgroundColor="White"
+                        ContainerType="Outlined"
+                        OutlineCornerRadius="22"
+                        ReserveSpaceForAssistiveLabels="False"
+                        TrailingViewPosition="Inside">
+                        <Entry
+                            x:Name="txtMessage"
+                            BackgroundColor="White"
+                            FontSize="13"
+                            Placeholder="Enter message here"
+                            PlaceholderColor="Black"
+                            Text="{Binding MessageText}" />
+                    </inputLayout:SfTextInputLayout>
+                </StackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                VerticalOptions="End" />
+        </StackLayout>
+
+        <StackLayout
+            Padding="10,15,0,15"
+            HorizontalOptions="Start"
+            Orientation="Horizontal"
+            Spacing="7">
+            <Button
+                x:Name="btnAdd"
+                Padding="10,0,10,0"
+                BackgroundColor="{StaticResource Blue100Accent}"
+                BorderColor="Black"
+                Clicked="OnAddNew_Clicked"
+                CornerRadius="5"
+                FlexLayout.AlignSelf="Stretch"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                Text="Send"
+                TextColor="White" />
+
+            <Button
+                x:Name="btnCancel"
+                Padding="10,0,10,0"
+                BackgroundColor="{StaticResource Blue100Accent}"
+                BorderColor="Black"
+                Clicked="OnCancel_Clicked"
+                CornerRadius="5"
+                FlexLayout.AlignSelf="Stretch"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                Text="Close"
+                TextColor="White" />
+        </StackLayout>
+
+        <busyIndicator:SfBusyIndicator
+            x:Name="busyIndicator"
+            Title="Sending Message..."
+            Margin="0,10,0,0"
+            AnimationType="Cupertino"
+            BackgroundColor="WhiteSmoke"
+            HeightRequest="100"
+            IndicatorColor="Gray"
+            IsRunning="{Binding IsLoading, Mode=TwoWay}"
+            TextColor="Gray"
+            TitlePlacement="Bottom" />
+
+    </StackLayout>
+
+</ContentPage>

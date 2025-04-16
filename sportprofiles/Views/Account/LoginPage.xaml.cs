@@ -1,21 +1,20 @@
 using System.Text.RegularExpressions;
 using sportprofiles.Services;
 using sportprofiles.ViewModels;
-using Microsoft.Maui.Storage;
 
 namespace sportprofiles.Views.Account
 {
     public partial class LoginPage : ContentPage
     {
-         private readonly MemberViewModel _memberViewModel;
+        private readonly MemberViewModel _memberViewModel;
         public LoginPage(MemberViewModel memberViewModel)
         {
             InitializeComponent();
-             _memberViewModel = memberViewModel;
+            _memberViewModel = memberViewModel;
             this.BindingContext = _memberViewModel;
-           
+
             string year = DateTime.Now.Year.ToString();
-            lblCopyright.Text = "© " + year + " MarcManMedia."; 
+            lblCopyright.Text = "© " + year + " MarcManMedia.";
         }
 
         private async void OnTapGestureRecognizerTapped_ForgetLabel(object sender, EventArgs e)
@@ -26,7 +25,7 @@ namespace sportprofiles.Views.Account
 
         private async void RegisterButton_Clicked(object sender, EventArgs e)
         {
-            var registerPage = new RegisterPage(new MemberViewModel(null) );
+            var registerPage = new RegisterPage(new MemberViewModel(null!));
             await Navigation.PushModalAsync(registerPage);
         }
 
@@ -57,11 +56,11 @@ namespace sportprofiles.Views.Account
             {
                 try
                 {
-                     // show the loading page...
+                    // show the loading page...
                     indicatorLayout.IsVisible = true;
                     activityIndicator.IsRunning = true;
 
-                      //call service via vm and do things
+                    //call service via vm and do things
                     var obj = await _memberViewModel.AuthenticateUser(email, pwd);
 
                     if (!String.IsNullOrEmpty(obj.MemberID))
@@ -73,7 +72,7 @@ namespace sportprofiles.Views.Account
                             Preferences.Set("UserEmail", obj.Email);
                             Preferences.Set("UserName", obj.Name);
                             Preferences.Set("UserTitle", obj.Title);
-                            await SecureStorage.SetAsync("AccessToken", obj.AccessToken);
+                            await SecureStorage.SetAsync("AccessToken", obj.AccessToken!);
 
                             Preferences.Set("ProfileLoginUser", "yes");
 
@@ -89,7 +88,7 @@ namespace sportprofiles.Views.Account
                             Preferences.Set("PWD", pwd);
                             Application.Current.MainPage = new AppShell();
                             indicatorLayout.IsVisible = false;
-                           
+
                         }
                         else if (obj.CurrentStatus == "3") //deactivated
                         {
@@ -113,7 +112,8 @@ namespace sportprofiles.Views.Account
                     }
                     else
                     {
-                        await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                        await DisplayAlert("General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                        _memberViewModel.LogException(ex.Message, ex.StackTrace!, "");
                     }
                 }
             }

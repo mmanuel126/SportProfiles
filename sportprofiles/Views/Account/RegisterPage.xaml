@@ -140,11 +140,10 @@
 
                                 <Label.GestureRecognizers>
 
-                                    <TapGestureRecognizer Tapped="RecoverPassword_tap_Tapped"
-                                            NumberOfTapsRequired="1" />
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="RecoverPassword_tap_Tapped" />
                                 </Label.GestureRecognizers>
 
-                            </Label>    
+                            </Label>
                         </StackLayout>
 
                     </StackLayout>
@@ -160,11 +159,10 @@
 
                         <Label.GestureRecognizers>
 
-                            <TapGestureRecognizer Tapped="Login_tap_Tapped"
-                                    NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Login_tap_Tapped" />
                         </Label.GestureRecognizers>
 
-                        </Label>
+                    </Label>
                     <Label Text="" />
 
                 </StackLayout>

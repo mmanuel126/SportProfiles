@@ -6,6 +6,13 @@
     xmlns:sfToolkit="http://schemas.syncfusion.com/maui/toolkit"
     Title="Contacts">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="refreshContacts"
+            Command="{Binding RefreshCommand}"
+            IconImageSource="refresh.png" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary Source="ContactResourceDictionary.xaml" />
@@ -26,9 +33,9 @@
 
                         <Grid BackgroundColor="WhiteSmoke">
 
-                            <AbsoluteLayout>
-                                <ScrollView>
-                                    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                                <RefreshView.Content>
+                                    <StackLayout>
 
                                         <CollectionView
                                             x:Name="collectionView"
@@ -39,6 +46,106 @@
                                             </CollectionView.EmptyView>
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
+
+                                                    <SwipeView BackgroundColor="WhiteSmoke">
+                                                        <SwipeView.LeftItems>
+                                                            <SwipeItems>
+                                                                <SwipeItem
+                                                                    BackgroundColor="Red"
+                                                                    Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DropCommand}"
+                                                                    CommandParameter="{Binding .}"
+                                                                    IconImageSource="reject.png"
+                                                                    Text="Drop" />
+                                                            </SwipeItems>
+                                                        </SwipeView.LeftItems>
+
+                                                        <StackLayout Padding="10,10,10,0" Spacing="8">
+                                                            <Frame>
+                                                                <StackLayout>
+                                                                    <StackLayout Padding="0,0,0,10" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+                                                                        <Frame Style="{StaticResource profileImageFrameStyle}">
+                                                                            <Image
+                                                                                Aspect="AspectFill"
+                                                                                HeightRequest="88"
+                                                                                HorizontalOptions="StartAndExpand"
+                                                                                Source="{Binding PicturePath}"
+                                                                                Style="{StaticResource profileImageStyle}"
+                                                                                VerticalOptions="CenterAndExpand" />
+                                                                        </Frame>
+                                                                        <StackLayout Style="{StaticResource detailsStackLayout}">
+                                                                            <Label Style="{StaticResource NameLabel}" Text="{Binding FriendName}" />
+                                                                            <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                                                <Label Style="{StaticResource TitleLabelStyle}" Text="{Binding TitleDesc}" />
+                                                                            </StackLayout>
+                                                                            <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                                                <Label
+                                                                                    FontAttributes="Bold"
+                                                                                    Style="{StaticResource LabelStyle}"
+                                                                                    Text="Tap here to view profile..."
+                                                                                    TextColor="Blue">
+                                                                                    <Label.GestureRecognizers>
+                                                                                        <TapGestureRecognizer Buttons="Primary" 
+                                                                                        CommandParameter="{Binding .}"    
+                                                                                        Tapped="OnTapGestureRecognizerTapped" />
+                                                                                    </Label.GestureRecognizers>
+                                                                                </Label>
+                                                                            </StackLayout>
+                                                                            <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                                                <Label Style="{StaticResource LabelStyle}" Text="Swipe right to drop contact..." />
+                                                                            </StackLayout>
+                                                                        </StackLayout>
+                                                                    </StackLayout>
+                                                                </StackLayout>
+                                                            </Frame>
+                                                        </StackLayout>
+                                                    </SwipeView>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </StackLayout>
+                                </RefreshView.Content>
+                            </RefreshView>
+
+                        </Grid>
+
+                    </sfToolkit:SfTabItem.Content>
+
+                </sfToolkit:SfTabItem>
+
+                <sfToolkit:SfTabItem Header="Requests">
+                    <sfToolkit:SfTabItem.Content>
+                        <!--  Grid BackgroundColor="WhiteSmoke"  -->
+
+                        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                            <RefreshView.Content>
+                                <StackLayout>
+
+                                    <CollectionView
+                                        x:Name="conReqView"
+                                        ItemsSource="{Binding ContactRequest}"
+                                        SelectionMode="Single">
+
+                                        <CollectionView.EmptyView>
+                                            <Label Padding="10" Text="You have no contact requests." />
+                                        </CollectionView.EmptyView>
+
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <SwipeView BackgroundColor="White">
+                                                    <SwipeView.LeftItems>
+                                                        <SwipeItems>
+                                                            <SwipeItem
+                                                                BackgroundColor="Green"
+                                                                Command="{Binding Source={x:Reference conReqView}, Path=BindingContext.AcceptCommand}"
+                                                                CommandParameter="{Binding .}"
+                                                                Text="Accept" />
+                                                            <SwipeItem
+                                                                BackgroundColor="Red"
+                                                                Command="{Binding Source={x:Reference conReqView}, Path=BindingContext.RejectCommand}"
+                                                                CommandParameter="{Binding .}"
+                                                                Text="Reject" />
+                                                        </SwipeItems>
+                                                    </SwipeView.LeftItems>
 
                                                     <StackLayout Padding="10,10,10,0" Spacing="8">
                                                         <Frame>
@@ -65,96 +172,31 @@
                                                                                 Text="Tap here to view profile..."
                                                                                 TextColor="Blue">
                                                                                 <Label.GestureRecognizers>
-                                                                                    <TapGestureRecognizer Buttons="Primary" Tapped="OnTapGestureRecognizerTapped" />
+                                                                                    <TapGestureRecognizer
+                                                                                        Buttons="Secondary"
+                                                                                        CommandParameter="{Binding .}" 
+                                                                                        Tapped="OnTapGestureRecognizerTapped" />
                                                                                 </Label.GestureRecognizers>
                                                                             </Label>
                                                                         </StackLayout>
                                                                         <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                                            <Label Style="{StaticResource LabelStyle}" Text="Swipe right to drop contact..." />
+                                                                            <Label Style="{StaticResource LabelStyle}" Text="Swipe right to accept or reject request..." />
                                                                         </StackLayout>
                                                                     </StackLayout>
                                                                 </StackLayout>
                                                             </StackLayout>
                                                         </Frame>
                                                     </StackLayout>
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
-
-                                    </StackLayout>
-                                </ScrollView>
-                            </AbsoluteLayout>
-
-                        </Grid>
-
-                    </sfToolkit:SfTabItem.Content>
-
-                </sfToolkit:SfTabItem>
-
-                <sfToolkit:SfTabItem Header="Requests">
-                    <sfToolkit:SfTabItem.Content>
-                        <Grid BackgroundColor="WhiteSmoke">
-                            <AbsoluteLayout>
-                                <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-
-                                    <CollectionView
-                                        x:Name="conReqView"
-                                        ItemsSource="{Binding ContactRequest}"
-                                        SelectionMode="Single">
-
-                                        <CollectionView.EmptyView>
-                                            <Label Padding="10" Text="You have no contact requests." />
-                                        </CollectionView.EmptyView>
-
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-
-                                                <StackLayout Padding="10,10,10,0" Spacing="8">
-                                                    <Frame>
-                                                        <StackLayout>
-                                                            <StackLayout Padding="0,0,0,10" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
-                                                                <Frame Style="{StaticResource profileImageFrameStyle}">
-                                                                    <Image
-                                                                        Aspect="AspectFill"
-                                                                        HeightRequest="88"
-                                                                        HorizontalOptions="StartAndExpand"
-                                                                        Source="{Binding PicturePath}"
-                                                                        Style="{StaticResource profileImageStyle}"
-                                                                        VerticalOptions="CenterAndExpand" />
-                                                                </Frame>
-                                                                <StackLayout Style="{StaticResource detailsStackLayout}">
-                                                                    <Label Style="{StaticResource NameLabel}" Text="{Binding FriendName}" />
-                                                                    <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                                        <Label Style="{StaticResource TitleLabelStyle}" Text="{Binding TitleDesc}" />
-                                                                    </StackLayout>
-                                                                    <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                                        <Label
-                                                                            FontAttributes="Bold"
-                                                                            Style="{StaticResource LabelStyle}"
-                                                                            Text="Tap here to view profile..."
-                                                                            TextColor="Blue">
-                                                                            <Label.GestureRecognizers>
-                                                                                <TapGestureRecognizer
-                                                                                    Buttons="Secondary"
-                                                                                    CommandParameter="{Binding .}"
-                                                                                    Tapped="OnTapGestureRecognizerTapped" />
-                                                                            </Label.GestureRecognizers>
-                                                                        </Label>
-                                                                    </StackLayout>
-                                                                    <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                                        <Label Style="{StaticResource LabelStyle}" Text="Swipe right to drop contact..." />
-                                                                    </StackLayout>
-                                                                </StackLayout>
-                                                            </StackLayout>
-                                                        </StackLayout>
-                                                    </Frame>
-                                                </StackLayout>
+                                                </SwipeView>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
+
                                 </StackLayout>
-                            </AbsoluteLayout>
-                        </Grid>
+                            </RefreshView.Content>
+                        </RefreshView>
+
+                        <!--  /Grid  -->
                     </sfToolkit:SfTabItem.Content>
                 </sfToolkit:SfTabItem>
 

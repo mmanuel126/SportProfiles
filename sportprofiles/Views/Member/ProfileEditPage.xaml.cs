@@ -1,31 +1,26 @@
-using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using sportprofiles.Models;
 using sportprofiles.Models.Members;
-using sportprofiles.Services;
 using sportprofiles.ViewModels;
 
 namespace sportprofiles.Views.Member;
 
 public partial class ProfileEditPage : ContentPage
 {
-    private readonly MemberViewModel _profileViewModel;
+    private readonly ProfileViewModel _profileViewModel;
 
-    public ProfileEditPage(MemberViewModel profileViewModel)
+    public ProfileEditPage(ProfileViewModel profileViewModel)
     {
         InitializeComponent();
     
         _profileViewModel = profileViewModel;
         BindingContext = profileViewModel; 
 
-        imgProfile.Source = "profile.png";
-        lblName.Text = "Marc Manuel";
-        lblTitle.Text = "Pro Basketball Player";
+        imgProfile.Source =  _profileViewModel.ProfileBasicInfo.memProfileImage;
+        lblName.Text = _profileViewModel.ProfileBasicInfo.memProfileName; 
+        lblTitle.Text = _profileViewModel.ProfileBasicInfo.memberProfileTitle;
     }
 
     async void OnRefreshProfile_Clicked(object sender, EventArgs e)
-    {
-        
+    {  
     }
 
     async void OnEducationSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -146,6 +141,7 @@ public partial class ProfileEditPage : ContentPage
             else
             {
                 await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                _profileViewModel.LogException(ex.Message,ex.StackTrace!,"");
             }
         }
     }
@@ -185,6 +181,7 @@ public partial class ProfileEditPage : ContentPage
             else
             {
                 await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                _profileViewModel.LogException(ex.Message, ex.StackTrace!, "");
             }
         }
     }
@@ -212,6 +209,7 @@ public partial class ProfileEditPage : ContentPage
             else
             {
                 await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                _profileViewModel.LogException(ex.Message,ex.StackTrace!, "");
             }
         }
     }
@@ -244,6 +242,7 @@ public partial class ProfileEditPage : ContentPage
             else
             {
                 await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                _profileViewModel.LogException(ex.Message,ex.StackTrace!,"");
             }
         }
     }

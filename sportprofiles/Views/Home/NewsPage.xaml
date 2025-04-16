@@ -5,77 +5,80 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="News">
 
-    <ScrollView>
-        <StackLayout
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
-            AbsoluteLayout.LayoutFlags="All"
-            Spacing="0">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="refreshNews"
+            Command="{Binding RefreshCommand}"
+            IconImageSource="refresh.png" />
+    </ContentPage.ToolbarItems>
 
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <RefreshView.Content>
+            <StackLayout>
 
-            <CollectionView
-                x:Name="collectionView"
-                BackgroundColor="#f7f9fa"
-                ItemsSource="{Binding News}"
-                SelectionChanged="OnCollectionViewSelectionChanged"
-                SelectionMode="Single">
+                <CollectionView
+                    x:Name="collectionView"
+                    BackgroundColor="#f7f9fa"
+                    ItemsSource="{Binding News}"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    SelectionMode="Single">
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
 
-                        <Grid Padding="10,10,10,10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+                            <Grid Padding="10,10,10,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
 
-                                <Image
-                                    Aspect="AspectFill"
-                                    HeightRequest="200"
-                                    Source="{Binding ImageUrl}"
-                                    WidthRequest="320" />
-                                <Label
-                                    Padding="0,5,0,5"
-                                    FontAttributes="None"
-                                    FontSize="15"
-                                    Text="{Binding HeaderText}"
-                                    TextColor="Blue" />
-                                <Label
-                                    FontAttributes="None"
-                                    FontSize="14"
-                                    Text="{Binding PostingDate}"
-                                    TextColor="Black"
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="200"
+                                        Source="{Binding imgUrl}"
+                                        WidthRequest="320" />
+                                    <Label
+                                        Padding="0,5,0,5"
+                                        FontAttributes="None"
+                                        FontSize="15"
+                                        Text="{Binding HeaderText}"
+                                        TextColor="Blue" />
+                                    <Label
+                                        FontAttributes="None"
+                                        FontSize="14"
+                                        Text="{Binding PostingDate}"
+                                        TextColor="Black"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Padding="0,5,0,5"
+                                        FontAttributes="None"
+                                        FontSize="14"
+                                        Text="{Binding Description}"
+                                        TextColor="Gray"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Padding="0,0,20,0"
+                                        FontAttributes="None"
+                                        FontSize="14"
+                                        Text=" "
+                                        TextColor="Gray"
+                                        VerticalOptions="End" />
+                                </StackLayout>
+
+                                <BoxView
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="1"
                                     VerticalOptions="End" />
-                                <Label
-                                    Padding="0,5,0,5"
-                                    FontAttributes="None"
-                                    FontSize="14"
-                                    Text="{Binding Description}"
-                                    TextColor="Gray"
-                                    VerticalOptions="End" />
-                                <Label
-                                    Padding="0,0,20,0"
-                                    FontAttributes="None"
-                                    FontSize="14"
-                                    Text=" "
-                                    TextColor="Gray"
-                                    VerticalOptions="End" />
-                            </StackLayout>
+                            </Grid>
 
-                            <BoxView
-                                BackgroundColor="LightGray"
-                                HeightRequest="1"
-                                VerticalOptions="End" />
-                        </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </RefreshView.Content>
+    </RefreshView>
 
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-        </StackLayout>
-
-
-    </ScrollView>
 </ContentPage>

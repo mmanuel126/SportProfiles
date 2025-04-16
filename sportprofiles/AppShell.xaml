@@ -3,15 +3,15 @@
     x:Class="sportprofiles.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:home="clr-namespace:sportprofiles.Views.Home"
     xmlns:account="clr-namespace:sportprofiles.Views.Account"
     xmlns:contact="clr-namespace:sportprofiles.Views.Contact"
+    xmlns:controls="clr-namespace:sportprofiles.Controls"
+    xmlns:home="clr-namespace:sportprofiles.Views.Home"
     xmlns:member="clr-namespace:sportprofiles.Views.Member"
     xmlns:message="clr-namespace:sportprofiles.Views.Message"
     xmlns:setting="clr-namespace:sportprofiles.Views.Setting"
-    xmlns:controls="clr-namespace:sportprofiles.Controls"
-    Shell.FlyoutBehavior="Flyout"
-    Title="sportprofiles">
+    Title="sportprofiles"
+    Shell.FlyoutBehavior="Flyout">
 
 
     <Shell.BackgroundColor>White</Shell.BackgroundColor>
@@ -21,87 +21,83 @@
     <Shell.TabBarForegroundColor>Red</Shell.TabBarForegroundColor>
     <Shell.TabBarTitleColor>Black</Shell.TabBarTitleColor>
 
-     <Shell.FlyoutBackdrop>
-        <LinearGradientBrush StartPoint="0,0"
-                             EndPoint="1,1">
-            <GradientStop Color="DarkGray"
-                          Offset="0.1" />
-            <GradientStop Color="Gray"
-                          Offset="0.6" />
-            <GradientStop Color="LightGray"
-                          Offset="1.0" />
+    <Shell.FlyoutBackdrop>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.1" Color="DarkGray" />
+            <GradientStop Offset="0.6" Color="Gray" />
+            <GradientStop Offset="1.0" Color="LightGray" />
         </LinearGradientBrush>
-    </Shell.FlyoutBackdrop>   
+    </Shell.FlyoutBackdrop>
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
     <Shell.FlyoutFooter>
-        <controls:FlyoutFooter></controls:FlyoutFooter>
+        <controls:FlyoutFooter />
     </Shell.FlyoutFooter>
 
-    <FlyoutItem FlyoutDisplayOptions ="AsMultipleItems">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
         <ShellContent
-        Title="News"
-        ContentTemplate="{DataTemplate home:NewsPage}"
-        Route="NewsPage"
-        Icon="news.png"/>
-
-         <ShellContent
-        Title="Posts"
-        ContentTemplate="{DataTemplate home:PostsPage}"
-        Route="PostsPage" 
-        Icon="posts.png"/>
+            Title="News"
+            ContentTemplate="{DataTemplate home:NewsPage}"
+            Icon="news.png"
+            Route="NewsPage" />
 
         <ShellContent
-        Title="Contacts"
-        ContentTemplate="{DataTemplate contact:ContactsPage}"
-        Route="ContactsPage" 
-        Icon="profile.png"/>
+            Title="Posts"
+            ContentTemplate="{DataTemplate home:PostsPage}"
+            Icon="posts.png"
+            Route="PostsPage" />
 
         <ShellContent
-        Title="Search"
-        ContentTemplate="{DataTemplate home:SearchPage}"
-        Route="SearchPage" 
-        Icon="search.png"/>
+            Title="Contacts"
+            ContentTemplate="{DataTemplate contact:ContactsPage}"
+            Icon="profile.png"
+            Route="ContactsPage" />
 
         <ShellContent
-        Title="Messages"
-        ContentTemplate="{DataTemplate message:MessagesPage}"
-        Route="MessagesPage" 
-        Icon="messenger.png"/>
+            Title="Search"
+            ContentTemplate="{DataTemplate home:SearchPage}"
+            Icon="search.png"
+            Route="SearchPage" />
 
         <ShellContent
-        Title="View My Profile"
-        ContentTemplate="{DataTemplate member:ProfilePage}"
-        Route="ProfilePage" 
-        Icon="profile.png"/>
+            Title="Messages"
+            ContentTemplate="{DataTemplate message:MessagePage}"
+            Icon="messenger.png"
+            Route="MessagesPage" />
 
         <ShellContent
-        Title="Edit My Profile"
-        ContentTemplate="{DataTemplate member:ProfileEditPage}"
-        Route="ProfileEditPage" 
-        Icon="editprofile.png"/>
+            Title="View My Profile"
+            ContentTemplate="{DataTemplate member:ProfilePage}"
+            Icon="profile.png"
+            Route="ProfilePage" />
 
         <ShellContent
-        Title="Account Settings"
-        ContentTemplate="{DataTemplate setting:AccountSettingsPage}"
-        Route="AccountSettingsPage" 
-        Icon="actsettings.png"/>
+            Title="Edit My Profile"
+            ContentTemplate="{DataTemplate member:ProfileEditPage}"
+            Icon="editprofile.png"
+            Route="ProfileEditPage" />
 
         <ShellContent
-        Title="Privacy Settings"
-        ContentTemplate="{DataTemplate setting:PrivacySettingsPage}"
-        Route="PrivacySettingsPage" 
-        Icon="privacy.png"/>
+            Title="Account Settings"
+            ContentTemplate="{DataTemplate setting:AccountSettingsPage}"
+            Icon="actsettings.png"
+            Route="AccountSettingsPage" />
 
         <ShellContent
-        Title="Logout"
-        ContentTemplate="{DataTemplate account:LogoutPage}"
-        Route="LogoutPage" 
-        Icon="logoff.png"/>
+            Title="Privacy Settings"
+            ContentTemplate="{DataTemplate setting:PrivacySettingsPage}"
+            Icon="privacy.png"
+            Route="PrivacySettingsPage" />
+
+        <ShellContent
+            Title="Logout"
+            ContentTemplate="{DataTemplate account:LogoutPage}"
+            Icon="logoff.png"
+            Route="LogoutPage" />
 
     </FlyoutItem>
 

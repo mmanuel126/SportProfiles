@@ -79,6 +79,7 @@ public partial class ChangePasswordPage : ContentPage
                 else
                 {
                     await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                    _memberViewModel.LogException(ex.Message,ex.StackTrace!,"");
                 }
             }
         }

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="sportprofiles.Views.Message.MessageDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyIndicator="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="Message Details"
+    ios:Page.UseSafeArea="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="NameLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+
+            <Style x:Key="imageLableStackLayout" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+            </Style>
+
+            <Style x:Key="imageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="8" />
+                <Setter Property="HeightRequest" Value="8" />
+            </Style>
+
+            <Style x:Key="detailsStackLayout" TargetType="StackLayout">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="Spacing" Value="2" />
+            </Style>
+
+            <Style x:Key="profileImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="48" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="Aspect" Value="AspectFit" />
+            </Style>
+
+
+            <Style x:Key="profileImageFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+            </Style>
+
+            <Style x:Key="itemsInsideCardViewStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="Spacing" Value="8" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BackgroundColor="White" Spacing="0">
+
+        <StackLayout Padding="0,30,0,0">
+            <StackLayout Padding="10,0,0,10" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+                <Frame Style="{StaticResource profileImageFrameStyle}">
+                    <Image
+                        x:Name="imgProfile"
+                        Source="{Binding MessageDetails.SenderPicture}"
+                        Style="{StaticResource profileImageStyle}" />
+                </Frame>
+                <StackLayout Padding="0,0,0,-10" Style="{StaticResource detailsStackLayout}">
+                    <Label
+                        x:Name="lblName"
+                        Style="{StaticResource NameLabel}"
+                        Text="{Binding MessageDetails.From}" />
+                    <StackLayout Style="{StaticResource imageLableStackLayout}">
+                        <Label
+                            x:Name="lblTitle"
+                            Style="{StaticResource TitleLabelStyle}"
+                            Text=" " />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource imageLableStackLayout}">
+                        <Label Style="{StaticResource LabelStyle}" Text="" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource imageLableStackLayout}">
+                        <Label Style="{StaticResource LabelStyle}" Text="" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                VerticalOptions="End" />
+        </StackLayout>
+
+        <StackLayout Padding="0,10,0,0">
+            <StackLayout Padding="10,0,0,0" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+
+                <StackLayout Padding="0,10,0,10" Style="{StaticResource detailsStackLayout}">
+                    <Label Style="{StaticResource NameLabel}" Text="{Binding MessageDetails.Subject}" />
+                    <StackLayout Style="{StaticResource imageLableStackLayout}">
+                        <Label Style="{StaticResource TitleLabelStyle}" Text="{Binding MessageDetails.SentDate}" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource imageLableStackLayout}">
+                        <Label Style="{StaticResource LabelStyle}" Text="" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource imageLableStackLayout}">
+                        <Label Style="{StaticResource LabelStyle}" Text="" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                VerticalOptions="End" />
+        </StackLayout>
+
+        <StackLayout Padding="0,10,0,0">
+            <StackLayout Padding="10,0,0,0" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+
+                <StackLayout Padding="0,10,0,10" Style="{StaticResource detailsStackLayout}">
+                    <Label Style="{StaticResource LabelStyle}" Text="{Binding MessageDetails.Body}" />
+                </StackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                VerticalOptions="End" />
+        </StackLayout>
+
+        <StackLayout Padding="0,10,0,0">
+
+            <Label FontAttributes="Bold" Text="  Reply:" />
+            <StackLayout Padding="10,0,10,0" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+
+                <StackLayout Padding="0,10,0,10" Style="{StaticResource detailsStackLayout}">
+                    <busyIndicator:SfTextInputLayout
+                        x:Name="txtMsg"
+                        Grid.Row="2"
+                        Padding="8,0,8,8"
+                        BackgroundColor="White"
+                        ContainerType="Outlined"
+                        OutlineCornerRadius="22"
+                        ReserveSpaceForAssistiveLabels="False"
+                        TrailingViewPosition="Inside">
+                        <Entry
+                            FontSize="13"
+                            Placeholder="Reply to message"
+                            PlaceholderColor="Black"
+                            Text="{Binding MessageText}" />
+                    </busyIndicator:SfTextInputLayout>
+                </StackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                VerticalOptions="End" />
+
+            <StackLayout
+                Padding="10,15,0,15"
+                HorizontalOptions="Start"
+                Orientation="Horizontal"
+                Spacing="7">
+                <Button
+                    x:Name="btnSend"
+                    Padding="10,0,10,0"
+                    BackgroundColor="{StaticResource Blue100Accent}"
+                    BorderColor="Black"
+                    Clicked="OnSendMsg_Clicked"
+                    CornerRadius="5"
+                    FlexLayout.AlignSelf="Stretch"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Send"
+                    TextColor="White" />
+
+                <Button
+                    x:Name="btnCancel"
+                    Padding="10,0,10,0"
+                    BackgroundColor="{StaticResource Blue100Accent}"
+                    BorderColor="Black"
+                    Clicked="OnCancel_Clicked"
+                    CornerRadius="5"
+                    FlexLayout.AlignSelf="Stretch"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Cancel"
+                    TextColor="White" />
+            </StackLayout>
+
+            <busyIndicator:SfBusyIndicator
+                x:Name="busyIndicator"
+                Title="Sending Message..."
+                Margin="0,30,0,0"
+                AnimationType="Cupertino"
+                HeightRequest="100"
+                IndicatorColor="Gray"
+                IsRunning="{Binding IsLoading, Mode=TwoWay}"
+                TextColor="Gray"
+                TitlePlacement="Bottom" />
+
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

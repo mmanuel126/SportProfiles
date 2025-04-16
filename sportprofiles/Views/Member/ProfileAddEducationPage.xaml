@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="sportprofiles.Views.ProfileAddEducationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="Add New School"
+    ios:Page.UseSafeArea="True"
+    BackgroundColor="#f7f9fa">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="MemberResourceDictionary.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10,0,0,0" Spacing="0">
+
+        <StackLayout>
+            <Label
+                Padding="10"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Start"
+                Text="Add New Education" />
+        </StackLayout>
+
+        <StackLayout Padding="0" BackgroundColor="WhiteSmoke">
+
+            <StackLayout HorizontalOptions="Start" Spacing="4">
+                <Label Style="{StaticResource LabelStyle2}" Text="Institution Type:" />
+                <Picker
+                    x:Name="InstTypePicker"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"
+                    TitleColor="Black"
+                    WidthRequest="300">
+                    <Picker.Items>
+                        <x:String>Colleges</x:String>
+                        <x:String>Public High School</x:String>
+                        <x:String>Private High School</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Start" Spacing="4">
+                <Label Style="{StaticResource LabelStyle2}" Text="State:" />
+                <Picker
+                    x:Name="StatePicker"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"
+                    ItemDisplayBinding="{Binding name}"
+                    ItemsSource="{Binding States}"
+                    SelectedIndexChanged="OnSelectedState"
+                    TitleColor="Black"
+                    WidthRequest="200" />
+            </StackLayout>
+
+            <StackLayout
+                x:Name="stacklayout"
+                HorizontalOptions="Start"
+                Spacing="4">
+                <Label
+                    Padding="0,4"
+                    Style="{StaticResource LabelStyle2}"
+                    Text="Institution:" />
+                <Picker
+                    x:Name="SchoolPicker"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"
+                    ItemDisplayBinding="{Binding SchoolName}"
+                    ItemsSource="{Binding Schools}"
+                    TitleColor="Black"
+                    WidthRequest="320" />
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Start" Spacing="4">
+                <Label
+                    Padding="0,4"
+                    Style="{StaticResource LabelStyle2}"
+                    Text="Field of Study (or Major):" />
+                <Entry
+                    x:Name="txtMajor"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"
+                    Keyboard="Text"
+                    Style="{StaticResource TextStyle}"
+                    WidthRequest="320" />
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Start" Spacing="4">
+                <Label
+                    Padding="0,4"
+                    Style="{StaticResource LabelStyle2}"
+                    Text="Degree:" />
+                <Picker
+                    x:Name="DegreePicker"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"
+                    TitleColor="Black"
+                    WidthRequest="250">
+                    <Picker.Items>
+                        <x:String>Post Graduate</x:String>
+                        <x:String>Undergraduate</x:String>
+                        <x:String>High School Diploma</x:String>
+                        <x:String>GED</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Start" Spacing="4">
+                <Label
+                    Padding="0,4"
+                    Style="{StaticResource LabelStyle2}"
+                    Text="Year:" />
+                <Picker
+                    x:Name="YearPicker"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"
+                    TitleColor="Black"
+                    WidthRequest="100">
+                    <Picker.Items>
+                        <x:String>2038</x:String>
+                        <x:String>2037</x:String>
+                        <x:String>2036</x:String>
+                        <x:String>2035</x:String>
+                        <x:String>2034</x:String>
+                        <x:String>2033</x:String>
+                        <x:String>2032</x:String>
+                        <x:String>2031</x:String>
+                        <x:String>2030</x:String>
+                        <x:String>2029</x:String>
+                        <x:String>2028</x:String>
+                        <x:String>2027</x:String>
+                        <x:String>2026</x:String>
+                        <x:String>2025</x:String>
+                        <x:String>2024</x:String>
+                        <x:String>2023</x:String>
+                        <x:String>2022</x:String>
+                        <x:String>2021</x:String>
+                        <x:String>2020</x:String>
+                        <x:String>2019</x:String>
+                        <x:String>2018</x:String>
+                        <x:String>2017</x:String>
+                        <x:String>2016</x:String>
+                        <x:String>2015</x:String>
+                        <x:String>2014</x:String>
+                        <x:String>2013</x:String>
+                        <x:String>2012</x:String>
+                        <x:String>2011</x:String>
+                        <x:String>2010</x:String>
+                        <x:String>2009</x:String>
+                        <x:String>2008</x:String>
+                        <x:String>2007</x:String>
+                        <x:String>2006</x:String>
+                        <x:String>2005</x:String>
+                        <x:String>2004</x:String>
+                        <x:String>2003</x:String>
+                        <x:String>2002</x:String>
+                        <x:String>2001</x:String>
+                        <x:String>2000</x:String>
+                        <x:String>1999</x:String>
+                        <x:String>1998</x:String>
+                        <x:String>1997</x:String>
+                        <x:String>1996</x:String>
+                        <x:String>1995</x:String>
+                        <x:String>1994</x:String>
+                        <x:String>1993</x:String>
+                        <x:String>1992</x:String>
+                        <x:String>1991</x:String>
+                        <x:String>1990</x:String>
+                        <x:String>1989</x:String>
+                        <x:String>1988</x:String>
+                        <x:String>1987</x:String>
+                        <x:String>1986</x:String>
+                        <x:String>1985</x:String>
+                        <x:String>1984</x:String>
+                        <x:String>1983</x:String>
+                        <x:String>1982</x:String>
+                        <x:String>1981</x:String>
+                        <x:String>1980</x:String>
+                        <x:String>1979</x:String>
+                        <x:String>1978</x:String>
+                        <x:String>1977</x:String>
+                        <x:String>1976</x:String>
+                        <x:String>1975</x:String>
+                        <x:String>1974</x:String>
+                        <x:String>1973</x:String>
+                        <x:String>1972</x:String>
+                        <x:String>1971</x:String>
+                        <x:String>1970</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Start" Spacing="4">
+                <Label
+                    Padding="0,4"
+                    Style="{StaticResource LabelStyle2}"
+                    Text="Sport Competition Level:" />
+                <Picker
+                    x:Name="SportLevelPicker"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"
+                    TitleColor="Black"
+                    WidthRequest="230">
+                    <Picker.Items>
+                        <x:String>Division I</x:String>
+                        <x:String>Division II</x:String>
+                        <x:String>Division III</x:String>
+                        <x:String>Club Sports</x:String>
+                        <x:String>Intramural Sports</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+        </StackLayout>
+
+        <StackLayout Padding="0,30,0,0" BackgroundColor="WhiteSmoke">
+            <StackLayout Padding="0,0,0,0" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+
+                <StackLayout Padding="0,0,0,10" Style="{StaticResource detailsStackLayout}">
+
+                    <StackLayout
+                        HorizontalOptions="Start"
+                        Orientation="Horizontal"
+                        Spacing="3">
+                        <Button
+                            x:Name="btnUpdate"
+                            Padding="10,0,10,0"
+                            BackgroundColor="{StaticResource Blue100Accent}"
+                            BorderColor="Black"
+                            Clicked="OnAddNew_Clicked"
+                            CornerRadius="5"
+                            FlexLayout.AlignSelf="Stretch"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Add"
+                            TextColor="White" />
+
+                        <Button
+                            x:Name="btnCancel"
+                            Padding="10,0,10,0"
+                            BackgroundColor="{StaticResource Blue100Accent}"
+                            BorderColor="Black"
+                            Clicked="OnCancel_Clicked"
+                            CornerRadius="5"
+                            FlexLayout.AlignSelf="Stretch"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Cancel"
+                            TextColor="White" />
+                    </StackLayout>
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

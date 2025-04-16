@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:data="clr-namespace:sportprofiles.ViewModels"
-             x:Class="sportprofiles.Views.Home.SearchPage"
-             Title="Search">
+<ContentPage
+    x:Class="sportprofiles.Views.Home.SearchPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:data="clr-namespace:sportprofiles.ViewModels"
+    Title="Search">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary Source="HomeResourceDictionary.xaml"/>
+            <ResourceDictionary Source="HomeResourceDictionary.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <StackLayout>
-        <SearchBar  x:Name="searchBar" BackgroundColor="White"
-                Placeholder="Search by member name, sport, or profile type..."
-                TextChanged="OnTextChanged"/>
+        <SearchBar
+            x:Name="searchBar"
+            BackgroundColor="White"
+            Placeholder="Search by member name, sport, or profile type..."
+            TextChanged="OnTextChanged" />
 
-        <Grid BackgroundColor="WhiteSmoke" >
+        <Grid BackgroundColor="WhiteSmoke">
 
-            <CollectionView x:Name="searchList" 
-                                        SelectionMode="Single" Grid.ColumnSpan="2" >
+            <CollectionView
+                x:Name="searchList"
+                Grid.ColumnSpan="2"
+                SelectionMode="Single">
 
                 <CollectionView.EmptyView>
-                    <Label Text=" "></Label>
+                    <Label Text=" " />
                 </CollectionView.EmptyView>
 
                 <CollectionView.ItemTemplate>
@@ -31,37 +36,52 @@
 
                             <SwipeView.LeftItems>
                                 <SwipeItems>
-                                    <SwipeItem x:Name="ConnectSwipe" Text="Connect" Clicked="OnConnectClicked" 
-                                                                       CommandParameter="{Binding .}"
-                                                             BackgroundColor="Green">
-                                    </SwipeItem>
+                                    <SwipeItem
+                                        x:Name="ConnectSwipe"
+                                        BackgroundColor="Green"
+                                        Clicked="OnConnectClicked"
+                                        CommandParameter="{Binding .}"
+                                        Text="Connect" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
 
-                            <StackLayout Spacing="8" Padding="10,10,10,0">
+                            <StackLayout Padding="10,10,10,0" Spacing="8">
                                 <Frame>
                                     <StackLayout>
                                         <StackLayout Padding="0,0,0,10" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
                                             <Frame Style="{StaticResource profileImageFrameStyle}">
-                                                <Image Style="{StaticResource profileImageStyle}" Source="{Binding PicturePath}" VerticalOptions="CenterAndExpand" HeightRequest="88" HorizontalOptions="StartAndExpand" Aspect="AspectFill" />
+                                                <Image
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="88"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    Source="{Binding PicturePath}"
+                                                    Style="{StaticResource profileImageStyle}"
+                                                    VerticalOptions="CenterAndExpand" />
                                             </Frame>
                                             <StackLayout Style="{StaticResource detailsStackLayout}">
-                                                <Label Text="{Binding FriendName}" Style="{StaticResource NameLabel}" />
+                                                <Label Style="{StaticResource NameLabel}" Text="{Binding EntityName}" />
                                                 <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                    <Label Text="{Binding TitleDesc}" Style="{StaticResource TitleLabelStyle}" />
+                                                    <Label Style="{StaticResource TitleLabelStyle}" Text="{Binding TitleDesc}" />
                                                 </StackLayout>
                                                 <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                    <Label Text="Tap here to view profile..." Style="{StaticResource LabelStyle}" TextColor="Blue" FontAttributes="Bold">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        Style="{StaticResource LabelStyle}"
+                                                        Text="Tap here to view profile..."
+                                                        TextColor="Blue">
                                                         <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer  Tapped="OnTapGestureRecognizerTapped" CommandParameter="Binding ."   Buttons="Primary"></TapGestureRecognizer>
+                                                            <TapGestureRecognizer
+                                                                Buttons="Primary"
+                                                                CommandParameter="Binding ."
+                                                                Tapped="OnTapGestureRecognizerTapped" />
                                                         </Label.GestureRecognizers>
                                                     </Label>
                                                 </StackLayout>
-                                                <StackLayout Style="{StaticResource imageLableStackLayout}" IsVisible="{Binding labelText}">
-                                                    <Label Text="Swipe right to request connection..." Style="{StaticResource LabelStyle}" />
+                                                <StackLayout IsVisible="{Binding labelText}" Style="{StaticResource imageLableStackLayout}">
+                                                    <Label Style="{StaticResource LabelStyle}" Text="Swipe right to request connection..." />
                                                 </StackLayout>
-                                                <StackLayout Style="{StaticResource imageLableStackLayout}" IsVisible="{Binding ParamsAV}">
-                                                    <Label Text="You are already connected" Style="{StaticResource LabelStyle}" />
+                                                <StackLayout IsVisible="{Binding ParamsAV}" Style="{StaticResource imageLableStackLayout}">
+                                                    <Label Style="{StaticResource LabelStyle}" Text="You are already connected" />
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>

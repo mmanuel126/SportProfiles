@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="sportprofiles.Views.Message.MessagePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="Messages"
+    ios:Page.UseSafeArea="True">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Clicked="OnItemClicked"
+            Order="Primary"
+            Priority="0"
+            Text="New" />
+        <ToolbarItem
+            x:Name="refreshProfile"
+            Command="{Binding RefreshCommand}"
+            IconImageSource="refresh.png" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="MessagesResourceDict.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0">
+                <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                    <CollectionView
+                        x:Name="collectionView"
+                        Margin="8"
+                        BackgroundColor="WhiteSmoke"
+                        ItemsSource="{Binding Messages}"
+                        SelectionMode="Single">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView BackgroundColor="WhiteSmoke">
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                BackgroundColor="Green"
+                                                Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.OpenCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Text="Open" />
+                                            <SwipeItem
+                                                BackgroundColor="Red"
+                                                Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DropCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Text="Delete" />
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+                                    <StackLayout Padding="0,0,0,0">
+                                        <Frame>
+                                            <StackLayout Padding="0,0,10,0" Spacing="0">
+                                                <StackLayout Padding="-25,0,0,0" Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+
+                                                    <Frame Padding="0,-5,0,0" Style="{StaticResource profileImageFrameStyle}">
+                                                        <Image
+                                                            Aspect="AspectFill"
+                                                            HeightRequest="100"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            Source="{Binding SenderImage}"
+                                                            Style="{StaticResource profileImageStyle}"
+                                                            VerticalOptions="CenterAndExpand" />
+                                                    </Frame>
+                                                    <StackLayout Padding="-18,0,0,0" Style="{StaticResource detailsStackLayout}">
+                                                        <Label Style="{StaticResource NameLabel}" Text="{Binding ContactName}" />
+                                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                            <Label Style="{StaticResource TitleLabelStyle}" Text="{Binding Subject}" />
+                                                        </StackLayout>
+                                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                            <Label Style="{StaticResource LabelStyle}" Text="{Binding MsgDate}" />
+                                                        </StackLayout>
+                                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                            <Label Style="{StaticResource LabelStyle}" Text="{Binding Body}" />
+                                                        </StackLayout>
+                                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                            <Label Style="{StaticResource DarkLabelStyle}" Text="Swipe right to open or delete." />
+                                                        </StackLayout>
+                                                        <StackLayout Padding="0,0,0,0">
+                                                            <Label
+                                                                FontAttributes="Bold"
+                                                                Style="{StaticResource LabelStyle}"
+                                                                Text="Tap here to view sender profile..."
+                                                                TextColor="Blue">
+                                                                <Label.GestureRecognizers>
+                                                                    <TapGestureRecognizer
+                                                                        Buttons="Primary"
+                                                                        CommandParameter="{Binding .}"
+                                                                        Tapped="OnTapGestureRecognizerTapped" />
+                                                                </Label.GestureRecognizers>
+                                                            </Label>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="aiLayoutMsg"
+                Padding="0,15,0,0"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                IsVisible="{Binding IsRefreshing}"
+                Opacity="1.9">
+                <ActivityIndicator
+                    x:Name="aiMsg"
+                    HorizontalOptions="CenterAndExpand"
+                    IsRunning="{Binding IsRefreshing}"
+                    VerticalOptions="Center"
+                    Color="Black" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Loading Data..."
+                    TextColor="Black"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>

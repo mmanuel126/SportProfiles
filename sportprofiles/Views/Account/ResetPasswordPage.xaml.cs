@@ -40,7 +40,7 @@ public partial class ResetPasswordPage : ContentPage
         {
             try
             {
-                var email = (string)Preferences.Get("ResetPwdEmail","");
+                var email = (string)Preferences.Get("ResetPwdEmail", "");
                 var result = await _memberViewModel.IsResetCodeExpired(Code.Text);
                 if (result == "yes")
                 {
@@ -49,7 +49,7 @@ public partial class ResetPasswordPage : ContentPage
                 }
                 else
                 {
-                    Preferences.Set("ResetPwdCode",Code.Text);
+                    Preferences.Set("ResetPwdCode", Code.Text);
                     var changePwdPage = new ChangePasswordPage(_memberViewModel);
                     await Navigation.PushAsync(new NavigationPage(changePwdPage));
                 }
@@ -63,6 +63,7 @@ public partial class ResetPasswordPage : ContentPage
                 else
                 {
                     await DisplayAlert(" General Error...", "A general error occured while you were using the application. The error has been logged and recorded for a specialist to look at. Try again in a bit later.", "Ok");
+                    _memberViewModel.LogException(ex.Message, ex.StackTrace!, "");
                 }
             }
         }
